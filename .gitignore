@@ -2,3 +2,4 @@ node_modules
 result
 .astro
 .direnv
+**/.DS_Store
