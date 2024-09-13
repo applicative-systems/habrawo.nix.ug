@@ -10,10 +10,10 @@ buildNpmPackage {
       ./astro.config.mjs
       ./package-lock.json
       ./package.json
-      ./public
       ./src
       ./tailwind.config.mjs
       ./tsconfig.json
+      (lib.fileset.maybeMissing ./public)
     ];
   };
 
