@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from "astro:assets";
 
-import logoLandscape from "@images/logo-landscape.png";
+import logoLandscape from "@images/logo-landscape.svg";
 
 import mapMacro from "@images/locations/theos/map-macro.png";
 import mapMicro from "@images/locations/theos/map-micro.png";
@@ -13,7 +13,7 @@ import meetingRoom from "@images/locations/theos/meeting-room.jpg";
 ---
 
 <Layout title="Nix Usergroup Hannover Braunschweig Wolfsburg">
-  <Image src={logoLandscape} alt="Nix Usergroup Hannover Braunschweig Wolfsburg" />
+  <Image src={logoLandscape} alt="Nix Usergroup Hannover Braunschweig Wolfsburg" class="w-full object-contain" />
   <h1 class="text-center py-10">Nix(OS) User Group Hannover Braunschweig Wolfsburg</h1>
   <div class="flex flex-col gap-8">
     <div>
