@@ -23,5 +23,6 @@
 
         checks = config.packages;
       };
+      flake.overlays.default = import ./overlay.nix;
     };
 }
