@@ -17,6 +17,12 @@ import '../style/main.css'
     <meta name="description" content="Nix Usergroup Hannover Braunschweig Wolfsburg" />
     <meta name="viewport" content="width=device-width" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg" />
+    {["048", "096", "144", "180", "192", "240"].map((res) =>
+      <link rel="icon" type="image/png" href={"/icon/icon-" + res + ".png"} sizes={res + "x" + res}>
+    )}
+
     <title>{title}</title>
   </head>
   <body>

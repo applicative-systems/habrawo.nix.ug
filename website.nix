@@ -13,7 +13,7 @@ buildNpmPackage {
       ./src
       ./tailwind.config.mjs
       ./tsconfig.json
-      (lib.fileset.maybeMissing ./public)
+      ./public
     ];
   };
 
