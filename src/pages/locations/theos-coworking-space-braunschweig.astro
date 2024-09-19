@@ -1,0 +1,55 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from "astro:assets";
+
+import logoLandscape from "@images/logo-landscape.svg";
+
+import mapMacro from "@images/locations/theos/map-macro.png";
+import mapMicro from "@images/locations/theos/map-micro.png";
+import door1 from "@images/locations/theos/door1.jpg";
+import door2 from "@images/locations/theos/door2.jpg";
+import door3 from "@images/locations/theos/door3.jpg";
+import meetingRoom from "@images/locations/theos/meeting-room.jpg";
+---
+
+<Layout title="HaBraWo Nix User Group Meetup Location: Theo's Coworking Space">
+  <div class="flex flex-col gap-8 max-w-screen-md mx-auto pb-20 pt-4 px-4 lg:px-0">
+    <div class="flex flex-col gap-4">
+      <h1>Location: Theo's Coworking Space</h1>
+      <p><b>Physical Address</b>: Theos Coworking Space, Mauernstraße 33, 38100 Braunschweig</p>
+      <p><a href="https://maps.app.goo.gl/9z2hwQFnHChhbqhz5">Google Maps Entry</a></p>
+      <p><b>Website</b>: <a href="https://theoscoworkingspace.de">https://theoscoworkingspace.de</a></p>
+
+      <h2>Directions</h2>
+      <h3>How to get to the location from Braunschweig Main Trainstation</h3>
+      <p>4 different alternative ways:</p>
+      <ul class="list-image-flake list-inside">
+        <li>Take Tram line 5 to "Museumstraße", then go 400m north</li>
+        <li><i>or</i> Take Tram line 1 or 2 to "Rathaus", then go 500m east</li>
+        <li><i>or</i> Take Bus 411 to "Staatstheater"</li>
+        <li><i>or</i> 20 minutes by foot</li>
+      </ul>
+      <Image src={mapMacro} alt="How to get to Theo's Coworking Space from Braunschweig Main Train Station" />
+
+      <h3>Getting to the building from the Steinweg/Staatstheater area:</h3>
+      <Image src={mapMicro} alt="How to get into Theo's Coworking Space from Braunschweig Staatstheater area" />
+
+      <h3>Main entrance door</h3>
+      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+      <Image src={door1} alt="The main entrance into the building where Theo's Coworking space is" class="lg:max-w-lg" />
+
+      <h3>Door 2</h3>
+      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+      <Image src={door2} alt="Second door to Theo's Coworking Space" class="lg:max-w-lg" />
+
+      <h3>Door 3</h3>
+      <p>Please use the door bell!</p>
+      <Image src={door3} alt="Third door to Theo's Coworking Space" class="lg:max-w-lg" />
+
+      <h3>Meeting Room</h3>
+      <p>Just follow the corridor. The meeting room is on the left!</p>
+      <Image src={meetingRoom} alt="The meeting room inside Theo's Coworking Space" class="lg:max-w-lg" />
+
+    </div>
+  </div>
+</Layout>

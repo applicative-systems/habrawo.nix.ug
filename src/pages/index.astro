@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import { Image } from "astro:assets";
 
 import logoLandscape from "@images/logo-landscape.svg";
@@ -20,12 +20,26 @@ import meetingRoom from "@images/locations/theos/meeting-room.jpg";
       <h2 class="pb-4">Contact</h2>
       <ul class="list-image-flake list-inside">
         <li>Whatsapp Group: <a href="https://chat.whatsapp.com/JSWO6lI7Ls5BrRxzpmYKuR">Join Here</a></li>
-        <li>Group organizer: Email jacek@applicative.systems, matrix @tfc:matrix.org</li>
+        <li>Matrix Chat Room: <a href="https://matrix.to/#/#habrawo:nixos.org">#habrawo:nixos.org</a></li>
+        <li>Group organizer: Email jacek@applicative.systems, Matrix <a href="https://matrix.to/#/@tfc:matrix.org">@tfc:matrix.org</a></li>
       </ul>
     </div>
     <div class="flex flex-col gap-4">
       <h2>Next Meetup</h2>
+      <p>Date: T.B.D. ~mid of October</p>
+      <p>Location: Hannover, T.B.D.</p>
+      <p>Time: 18:00 - open end</p>
+      <ul class="list-image-flake list-inside">
+        <li>18:00: Get together</li>
+        <li>18:20: Talk (Do you want to give a talk? Please reach out. 👋)</li>
+        <li>19:20: Discussion</li>
+        <li>20:00: Restaurant or Bar (until open end)</li>
+      </ul>
+
+
+      <h2>Last Meetup</h2>
       <p>Date: Tuesday, 2024-09-17</p>
+      <p>Location: <a href="/locations/theos-coworking-space-braunschweig">Braunschweig, Theos Coworking Space</a></p>
       <p>Time: 18:00 - open end</p>
 
       <h3>Schedule</h3>
@@ -35,42 +49,6 @@ import meetingRoom from "@images/locations/theos/meeting-room.jpg";
         <li>19:20: Discussion</li>
         <li>20:00: Restaurant or Bar (until open end)</li>
       </ul>
-
-      <h3>Location</h3>
-      <p><b>Physical Address</b>: Theos Coworking Space, Mauernstraße 33, 38100 Braunschweig</p>
-      <p><a href="https://maps.app.goo.gl/9z2hwQFnHChhbqhz5">Google Maps Entry</a></p>
-      <p><b>Website</b>: <a href="https://theoscoworkingspace.de">https://theoscoworkingspace.de</a></p>
-
-      <h3>Directions</h3>
-      <h4>How to get to the location from Braunschweig Main Trainstation</h4>
-      <p>4 different alternative ways:</p>
-      <ul class="list-image-flake list-inside">
-        <li>Take Tram line 5 to "Museumstraße", then go 400m north</li>
-        <li><i>or</i> Take Tram line 1 or 2 to "Rathaus", then go 500m east</li>
-        <li><i>or</i> Take Bus 411 to "Staatstheater"</li>
-        <li><i>or</i> 20 minutes by foot</li>
-      </ul>
-      <Image src={mapMacro} alt="How to get to Theo's Coworking Space from Braunschweig Main Train Station" />
-
-      <h4>Getting to the building from the Steinweg/Staatstheater area:</h4>
-      <Image src={mapMicro} alt="How to get into Theo's Coworking Space from Braunschweig Staatstheater area" />
-
-      <h4>Main entrance door</h4>
-      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
-      <Image src={door1} alt="The main entrance into the building where Theo's Coworking space is" class="lg:max-w-lg" />
-
-      <h4>Door 2</h4>
-      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
-      <Image src={door2} alt="Second door to Theo's Coworking Space" class="lg:max-w-lg" />
-
-      <h4>Door 3</h4>
-      <p>Please use the door bell!</p>
-      <Image src={door3} alt="Third door to Theo's Coworking Space" class="lg:max-w-lg" />
-
-      <h4>Meeting Room</h4>
-      <p>Just follow the corridor. The meeting room is on the left!</p>
-      <Image src={meetingRoom} alt="The meeting room inside Theo's Coworking Space" class="lg:max-w-lg" />
-
     </div>
   </div>
 </Layout>
