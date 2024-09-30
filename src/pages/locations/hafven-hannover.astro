@@ -1,0 +1,45 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from "astro:assets";
+
+import mapMacro from "@images/locations/hafven/map-macro.png";
+---
+
+<Layout title="HaBraWo Nix User Group Meetup Location: Hafven (Nordstadt)">
+  <div class="flex flex-col gap-8 max-w-screen-md mx-auto pb-20 pt-4 px-4 lg:px-0">
+    <div class="flex flex-col gap-4">
+      <h1>Location: Hafven (Nordstadt)</h1>
+      <p><b>Physical Address</b>: Hafven Nordstadt, Kopernikusstraße 14
+        30167 Hannover</p>
+      <p><a href="https://maps.app.goo.gl/ujQ1tY2hiYXepKtd6">Google Maps Entry</a></p>
+      <p><b>Website</b>: <a href="https://www.hafven.de/">https://www.hafven.de</a></p>
+
+      <p><i>Please note that there are two Hafvens: One in Nordstadt, and one in Linden. We meet at the Hafven Nordstadt!</i></p>
+
+      <h2>Directions</h2>
+      <h3>How to get to the location from Hannover main train station</h3>
+      <ul class="list-image-flake list-inside">
+        <li>From the main train station, go to Tram station "Hannover Kröpke" by foot (350m)</li>
+        <li>Take tram number 6 or 11 to "Hannover Kopernikusstraße"</li>
+        <li>Go to Hafven by foot (250m)</li>
+      </ul>
+      <Image src={mapMacro} alt="How to get to Hafven from Hannover Main Train Station" />
+
+      <h3>Getting to the building from Hannover Kopernikusstr.:</h3>
+      <i>TBD</i>
+
+      <h3>Main entrance door</h3>
+      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+
+      <h3>Door 2</h3>
+      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+
+      <h3>Door 3</h3>
+      <p>Please use the door bell!</p>
+
+      <h3>Meeting Room</h3>
+      <p>Just follow the corridor. The meeting room is on the left!</p>
+
+    </div>
+  </div>
+</Layout>
