@@ -3,6 +3,24 @@ import Layout from '@layouts/Layout.astro';
 import { Image } from "astro:assets";
 
 import mapMacro from "@images/locations/hafven/map-macro.png";
+import mapMicro from "@images/locations/hafven/map-micro.png";
+
+import mainEntrance from "@images/locations/hafven/1-main-entrance.jpg";
+import mainEntranceSlope from "@images/locations/hafven/1-entrance-slope.jpg";
+import entranceDoor from "@images/locations/hafven/1-entrance-door.jpg";
+import corridor from "@images/locations/hafven/1-corridor.jpg";
+import corridor2 from "@images/locations/hafven/1-corridor-2.jpg";
+import stairs from "@images/locations/hafven/1-stairs.jpg";
+import stairs2 from "@images/locations/hafven/1-stairs-2.jpg";
+
+import backEntrance from "@images/locations/hafven/2-back-entrance.jpg";
+import courtyard from "@images/locations/hafven/2-courtyard.jpg";
+import courtyardStairs from "@images/locations/hafven/2-courtyard-stairs.jpg";
+import courtyard2ndfloor from "@images/locations/hafven/2-courtyard-2ndfloor.jpg";
+import courtyardDoor from "@images/locations/hafven/2-courtyard-door.jpg";
+import courtyardDoor2 from "@images/locations/hafven/2-courtyard-door2.jpg";
+import inside1 from "@images/locations/hafven/2-inside-1.jpg";
+import meetingRoom from "@images/locations/hafven/2-meeting-room.jpg";
 ---
 
 <Layout title="HaBraWo Nix User Group Meetup Location: Hafven (Nordstadt)">
@@ -25,21 +43,58 @@ import mapMacro from "@images/locations/hafven/map-macro.png";
       </ul>
       <Image src={mapMacro} alt="How to get to Hafven from Hannover Main Train Station" />
 
-      <h3>Getting to the building from Hannover Kopernikusstr.:</h3>
-      <i>TBD</i>
+      <h3>Getting to the Hafven Nordstadt building from tram stop "Kopernikusstraße"</h3>
+      <Image src={mapMicro} alt="How to get to Hafven from Hannover Main Train Station" />
 
-      <h3>Main entrance door</h3>
-      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+      <h3>Getting into Hafven Nordstadt after 18:00 via the back entry</h3>
+      <p>Hafven's back entrance is on the opposite side of the building from the main entrance. The address is Sandstraße 5. This entrance is likely to be open after 18:00. Should the gate be closed, call or message anyone in the UG (see contact details on main page) and we will pick you up.</p>
+      <Image src={backEntrance} alt="The back entrance into the Hafven building" class="lg:max-w-lg" />
 
-      <h3>Door 2</h3>
-      <p><i>Should be open or at least unlocked.</i> If it is locked, message us so we can open it for you!</p>
+      <p>Enter through the courtyard to take the stairs up on your left.</p>
+      <Image src={courtyard} alt="Hafven's courtyard" class="lg:max-w-lg" />
 
-      <h3>Door 3</h3>
-      <p>Please use the door bell!</p>
+      <p>Take the stairs up to reach the second level. You will have to turn around to reach the door between the co-working offices.</p>
+      <Image src={courtyardStairs} alt="Hafven's courtyard stairs" class="lg:max-w-lg" />
 
-      <h3>Meeting Room</h3>
-      <p>Just follow the corridor. The meeting room is on the left!</p>
+      <p>Take the left path, then turn left to reach the door on the opposite side of the stairs.</p>
+      <Image src={courtyard2ndfloor} alt="Hafven's courtyard 2nd floor" class="lg:max-w-lg" />
 
+      <p>Turn left to reach the door on the opposite side of the stairs to enter Hafven. The door in the corner is open.</p>
+      <Image src={courtyardDoor} alt="Hafven's courtyard 2nd floor door" class="lg:max-w-lg" />
+
+      <p>Enter through the door to Coworking Spaces.</p>
+      <Image src={courtyardDoor2} alt="Hafven's courtyard 2nd floor door (2nd perspective)" class="lg:max-w-lg" />
+
+      <p>Once inside follow the sign for Meeting Space, taking up the flight of stairs on the left.</p>
+      <Image src={inside1} alt="Corridor in Hafven after entering through courtyard 2nd floor door (2nd perspective)" class="lg:max-w-lg" />
+
+      <p>Knock on the door to Meeting Space on your left. We will open and let you in.</p>
+      <Image src={meetingRoom} alt="Meeting room door" class="lg:max-w-lg" />
+      
+      <h3>Getting into Hafven Nordstadt via the main entry</h3>
+      <p>Enter via the main entrance at Kopernikusstraße 14. This entry is likely closed after 18:00.</p>
+      <Image src={mainEntrance} alt="The main entrance into the Hafven building" class="lg:max-w-lg" />
+
+      <p>Take the slope up to the main entrance.</p>
+      <Image src={mainEntranceSlope} alt="The main entrance into the Hafven building" class="lg:max-w-lg" />
+
+      <p>Enter the building via this door. If it is locked, call or message anyone in the UG (see contact details on main page) and we will pick you up.</p>
+      <Image src={entranceDoor} alt="The main entrance door into the Hafven building" class="lg:max-w-lg" />
+
+      <p>Go straight and follow the second sign to Meeting Space.</p>
+      <Image src={corridor} alt="The corridor after the main entrance" class="lg:max-w-lg" />
+
+      <p>Take the stairs up to Meeting Space (two flights).</p>
+      <Image src={corridor2} alt="The corridor after the main entrance" class="lg:max-w-lg" />
+
+      <p>After the first flight of stairs follow the sign for Meeting Space. Take the second flight of stairs on your left.</p>
+      <Image src={stairs} alt="The second flight of stairs" class="lg:max-w-lg" />
+
+      <p>Go up the second flight of stairs. The meeting space is on the left.</p>
+      <Image src={stairs2} alt="The second flight of stairs" class="lg:max-w-lg" />
+
+      <p>Knock on the door to Meeting Space on your left. We will open and let you in.</p>
+      <Image src={meetingRoom} alt="Meeting room door" class="lg:max-w-lg" />
     </div>
   </div>
 </Layout>
