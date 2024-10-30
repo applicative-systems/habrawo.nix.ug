@@ -1,0 +1,31 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from "astro:assets";
+
+import map from "@images/locations/schiller40/map.png";
+import building from "@images/locations/schiller40/building.jpg";
+
+---
+
+<Layout title="HaBraWo Nix User Group Meetup Location: Hafven (Nordstadt)">
+  <div class="flex flex-col gap-8 max-w-screen-md mx-auto pb-20 pt-4 px-4 lg:px-0">
+    <div class="flex flex-col gap-4">
+      <h1>Location: Schiller40 Coworking Space</h1>
+      <p><b>Physical Address</b>: Porschestraße 2c, 38440 Wolfsburg</p>
+      <p><a href="https://maps.app.goo.gl/ujQ1tY2hiYXepKtd6">Google Maps Entry</a></p>
+      <p><b>Website</b>: <a href="https://www.wolfsburg.de/en/rathaus/stadtverwaltung/35-referat-digitalisierung-und-wirtschaft/schiller40-coworking-space">https://www.wolfsburg.de/en/rathaus/stadtverwaltung/35-referat-digitalisierung-und-wirtschaft/schiller40-coworking-space</a></p>
+
+      <h2>Directions</h2>
+      <h3>How to get to the location from Wolfsburg main train station</h3>
+      <ul class="list-image-flake list-inside">
+        <li>From the main train station, go by foot (350m)</li>
+      </ul>
+      <Image src={map} alt="How to get to Schiller40 from Wolfsburg Main Train Station" />
+
+      <h3>Getting into the Schiller40 Coworking Space</h3>
+      <Image src={building} alt="The Schiler40 Coworking Space Building" class="lg:max-w-lg" />
+
+      <p>The meeting room is right inside. You will not miss it.</p>
+    </div>
+  </div>
+</Layout>
