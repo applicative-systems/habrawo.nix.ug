@@ -4,12 +4,7 @@ import { Image } from "astro:assets";
 
 import logoLandscape from "@images/logo-landscape.svg";
 
-import mapMacro from "@images/locations/theos/map-macro.png";
-import mapMicro from "@images/locations/theos/map-micro.png";
-import door1 from "@images/locations/theos/door1.jpg";
-import door2 from "@images/locations/theos/door2.jpg";
-import door3 from "@images/locations/theos/door3.jpg";
-import meetingRoom from "@images/locations/theos/meeting-room.jpg";
+import bsWeihnachtsMarkt from "@images/locations/bs-weihnachtsmarkt/burgplatz.png";
 ---
 
 <Layout title="Nix Usergroup Hannover Braunschweig Wolfsburg">
@@ -26,6 +21,20 @@ import meetingRoom from "@images/locations/theos/meeting-room.jpg";
     </div>
     <div class="flex flex-col gap-4">
       <h2>Next Meetup</h2>
+      <p>Date: 2024-12-10 Tuesday</p>
+      <p>Location: Burgplatz, Braunschweig. On the christmas market! We meet right at the lion statue.</p>
+      <Image src={bsWeihnachtsMarkt} alt="The Burgplatz in Braunschweig. We meet at the Lion statue." />
+
+      <p>Time: 18:00 - open end</p>
+      <ul class="list-image-flake list-inside">
+        <li>18:00: Get together</li>
+        <li>21:00: Restaurant or Bar (until open end)</li>
+      </ul>
+      <h3>Let's Celebrate Christmas and the end of the year together</h3>
+      <p>There will be a little Nix-related present for everyone!</p>
+
+      <hr>
+      <h2>Past Meetup</h2>
       <p>Date: 2024-11-19 Tuesday</p>
       <p>Location: <a href="/locations/schiller40-wolfsburg">Wolfsburg, Coworking Space Schiller 40</a></p>
       <p>Time: 18:00 - open end</p>
