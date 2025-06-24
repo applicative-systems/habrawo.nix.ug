@@ -1,0 +1,52 @@
+---
+import Layout from '@layouts/Layout.astro';
+import { Image } from "astro:assets";
+
+import mapMacro from "@images/locations/bs-virtualounge/macro.png";
+import mapMicro from "@images/locations/bs-virtualounge/micro.png";
+
+import entry1 from "@images/locations/bs-virtualounge/entry1.jpg";
+import entry2 from "@images/locations/bs-virtualounge/entry2.jpg";
+import entry3 from "@images/locations/bs-virtualounge/entry3.jpg";
+import entry4 from "@images/locations/bs-virtualounge/entry4.jpg";
+
+---
+
+<Layout title="HaBraWo Nix User Group Meetup Location: Hafven (Nordstadt)">
+  <div class="flex flex-col gap-8 max-w-screen-md mx-auto pb-20 pt-4 px-4 lg:px-0">
+    <div class="flex flex-col gap-4">
+      <h1>Location: VirtuaLounge Braunschweig</h1>
+      <p><b>Physical Address</b>: Kleine Burg 15, 38100 Braunschweig</p>
+      <p>
+        Map: 
+        <a href="https://maps.app.goo.gl/uFQg3YFwF8etrEJ86">Google Maps</a>,
+        <a href="https://www.openstreetmap.org/node/7187685987">OpenStreetMap</a>
+      </p>
+      <p><b>Website</b>: <a href="https://www.virtualounge.de/">https://www.virtualounge.de</a></p>
+
+      <h2>Directions</h2>
+      <h3>How to get to the location from Braunschweig main train station</h3>
+      <ul class="list-image-flake list-inside">
+        <li>From the main train station, take tram number 1, 2, 5, or 10 to "Schloss" or "Rathaus"</li>
+        <li>Go west by foot (300m)</li>
+        <li><i>Alternative:</i> From the main train station, go by foot (2km, 20min)</li>
+      </ul>
+      <Image src={mapMacro} alt="How to get to VirtuaLounge from Braunschweig Main Train Station" />
+
+      <h3>Getting to the VirtuaLounge from tram stops "Schloss"/"Rathaus"</h3>
+      <Image src={mapMicro} alt="How to get to VirtuaLounge from Braunschweig Main Train Station" />
+
+      <h3>Getting into VirtuaLounge</h3>
+      <p>The main entry is in a small gangway into the building:</p>
+      <Image src={entry1} alt="The main entrance into the VirtuaLounge" class="lg:max-w-lg" />
+
+      <Image src={entry2} alt="VirtuaLounge Ground Level Door" class="lg:max-w-lg" />
+
+      <p>The door should be open or can be pulled open.</p>
+      <Image src={entry3} alt="VirtuaLounge entrance on level 3" class="lg:max-w-lg" />
+
+      <p>Take the stairs up to reach level 3. The next door is also open or can be pulled open.</p>
+      <Image src={entry4} alt="VirtuaLounge Inside" class="lg:max-w-lg" />
+    </div>
+  </div>
+</Layout>
