@@ -93,6 +93,10 @@ export const nextMeetup: Meetup = {
     { src: bsVRevent1_1, alt: "Talk at the July 2025 VirtuaLounge event" },
     { src: bsVRevent1_2, alt: "Talk at the July 2025 VirtuaLounge event" },
     { src: bsVRevent1_3, alt: "Gaming at the July 2025 VirtuaLounge event" },
+    {
+      src: bsVRevent2_chicken,
+      alt: "Ultimate Chicken Horse at the October 2025 VirtuaLounge event",
+    },
   ],
 };
 
@@ -296,6 +300,25 @@ export const pastMeetups: Meetup[] = [
     ],
   },
 ];
+
+/**
+ * Start of a meetup as an ISO timestamp with the Europe/Berlin offset,
+ * derived from `date` and the first HH:MM in `time`.
+ */
+export function startsAt(meetup: Meetup): string | undefined {
+  const hhmm = meetup.time.match(/\b(\d{1,2}):(\d{2})\b/);
+  if (!hhmm) return undefined;
+  const local = `${meetup.date}T${hhmm[1].padStart(2, "0")}:${hhmm[2]}:00`;
+  // Offset of Europe/Berlin on that day ("GMT+01:00" or "GMT+02:00").
+  const offset = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Berlin",
+    timeZoneName: "longOffset",
+  })
+    .formatToParts(new Date(`${local}Z`))
+    .find((p) => p.type === "timeZoneName")!
+    .value.replace("GMT", "");
+  return `${local}${offset || "+00:00"}`;
+}
 
 export function weekday(date: string): string {
   return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", {

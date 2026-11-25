@@ -2,9 +2,10 @@
 import Layout from "@layouts/Layout.astro";
 import Terminal from "@components/Terminal.astro";
 import MeetupDetails from "@components/MeetupDetails.astro";
+import Countdown from "@components/Countdown.astro";
 import { Image } from "astro:assets";
 
-import { nextMeetup, pastMeetups, weekday } from "../data/meetups";
+import { nextMeetup, pastMeetups, startsAt, weekday } from "../data/meetups";
 
 import logoLandscape from "@images/logo-landscape.svg";
 import logoNixcademy from "@images/supporters/nixcademy.svg";
@@ -16,6 +17,8 @@ const supporters = [
   { name: "Applicative Systems", href: "https://applicative.systems", logo: logoApplicative, class: "h-10" },
   { name: "Institute of Nix", href: "https://nix.institute", logo: logoNixInstitute, class: "h-9", wordmark: true },
 ];
+
+const nextStart = startsAt(nextMeetup);
 
 const pastSummary = (m: (typeof pastMeetups)[number]) =>
   m.title ?? m.talks?.[0]?.title ?? "Meetup";
@@ -45,6 +48,8 @@ const pastSummary = (m: (typeof pastMeetups)[number]) =>
       <p class="prompt">nix run .#next-meetup</p>
 
       <h2 class="text-term-yellow">{nextMeetup.title}</h2>
+
+      {nextStart && <Countdown start={nextStart} />}
 
       {
         nextMeetup.rsvp && (

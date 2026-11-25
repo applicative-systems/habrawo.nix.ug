@@ -1,0 +1,64 @@
+---
+interface Props {
+  /** ISO timestamp with offset, e.g. 2026-12-16T17:00:00+01:00 */
+  start: string;
+}
+
+const { start } = Astro.props;
+const units = [
+  ["days", "d"],
+  ["hours", "h"],
+  ["minutes", "m"],
+  ["seconds", "s"],
+];
+---
+
+<!-- Hidden until the script confirms the start is in the future. -->
+<div data-countdown={start} hidden>
+  <p class="prompt">countdown {start.slice(0, 10)} {start.slice(11, 16)}</p>
+  <p role="timer" aria-live="off" class="mt-2 tabular-nums">
+    <span class="text-4xl sm:text-6xl">
+      {
+        units.map(([unit, suffix]) => (
+          <>
+            <span data-unit={unit} class="font-bold text-term-green">--</span><span class="text-term-muted">{suffix}</span>{" "}
+          </>
+        ))
+      }
+    </span>
+    <span class="mt-1 block text-term-muted">until doors open</span>
+  </p>
+</div>
+
+<script>
+  for (const el of document.querySelectorAll<HTMLElement>("[data-countdown]")) {
+    const target = Date.parse(el.dataset.countdown!);
+    if (Number.isNaN(target)) continue;
+
+    const parts = Object.fromEntries(
+      [...el.querySelectorAll<HTMLElement>("[data-unit]")].map((p) => [p.dataset.unit!, p]),
+    );
+
+    const tick = () => {
+      const left = Math.floor((target - Date.now()) / 1000);
+      if (left <= 0) {
+        el.hidden = true;
+        clearInterval(timer);
+        return;
+      }
+      const values = {
+        days: Math.floor(left / 86400),
+        hours: Math.floor((left % 86400) / 3600),
+        minutes: Math.floor((left % 3600) / 60),
+        seconds: left % 60,
+      };
+      for (const [unit, value] of Object.entries(values)) {
+        parts[unit].textContent = unit === "days" ? String(value) : String(value).padStart(2, "0");
+      }
+      el.hidden = false;
+    };
+
+    const timer = setInterval(tick, 1000);
+    tick();
+  }
+</script>
