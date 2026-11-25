@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import { type Meetup, weekday } from "../data/meetups";
+
+interface Props {
+  meetup: Meetup;
+}
+
+const { meetup } = Astro.props;
+const talkLabel = meetup.talks && meetup.talks.length > 1 ? "talks" : "talk";
+---
+
+<dl class="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 gap-y-1 sm:grid-cols-[8rem_minmax(0,1fr)]">
+  <dt class="text-term-magenta">date</dt>
+  <dd>{meetup.date} <span class="text-term-muted">({weekday(meetup.date)})</span></dd>
+
+  <dt class="text-term-magenta">where</dt>
+  <dd>
+    {meetup.location.href ? <a href={meetup.location.href}>{meetup.location.name}</a> : meetup.location.name}
+    {meetup.locationNote && <span class="block text-term-muted">{meetup.locationNote}</span>}
+  </dd>
+
+  <dt class="text-term-magenta">time</dt>
+  <dd>{meetup.time}</dd>
+</dl>
+
+{
+  meetup.notes?.map((note) => (
+    <p set:html={note} />
+  ))
+}
+
+<div>
+  <p class="comment"># agenda</p>
+  <ul class="mt-1 flex flex-col gap-1">
+    {
+      meetup.agenda.map(([time, what]) => (
+        <li class="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-x-4 sm:grid-cols-[8rem_minmax(0,1fr)]">
+          <span class="text-term-yellow">{time}</span>
+          <span set:html={what} />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+{
+  meetup.talks && (
+    <div>
+      <p class="comment"># {talkLabel}</p>
+      <ul class="mt-1 flex flex-col gap-3">
+        {meetup.talks.map((talk) => (
+          <li>
+            <h3 set:html={talk.title} />
+            {talk.description && <p class="mt-1 text-term-fg/90" set:html={talk.description} />}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+{
+  meetup.pictures && (
+    <div>
+      <p class="comment"># {meetup.picturesLabel ?? "pictures"}</p>
+      <div class="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        {meetup.pictures.map((picture) => (
+          <a href={picture.src.src} class="block overflow-hidden rounded-md border border-term-border hover:bg-transparent">
+            <Image
+              src={picture.src}
+              alt={picture.alt}
+              widths={[400, 800]}
+              sizes="(min-width: 640px) 380px, 100vw"
+              class="aspect-[4/3] w-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}

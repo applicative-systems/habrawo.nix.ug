@@ -2,26 +2,145 @@
 @tailwind components;
 @tailwind utilities;
 
-a {
-  @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600;
+@layer base {
+  /* Colors are "r g b" triples so Tailwind can add alpha (see tailwind.config.mjs). */
+  :root {
+    color-scheme: light;
+    --bg: 246 248 250;
+    --surface: 255 255 255;
+    --raised: 234 238 242;
+    --fg: 31 35 40;
+    --muted: 89 99 110;
+    --border: 208 215 222;
+    --blue: 40 84 170;
+    --cyan: 10 107 128;
+    --green: 26 127 55;
+    --yellow: 154 103 0;
+    --magenta: 130 80 223;
+    --red: 207 34 46;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: 10 13 18;
+      --surface: 17 22 29;
+      --raised: 30 36 44;
+      --fg: 225 232 240;
+      --muted: 139 148 158;
+      --border: 48 56 66;
+      --blue: 126 186 228;
+      --cyan: 86 212 221;
+      --green: 126 231 135;
+      --yellow: 227 179 65;
+      --magenta: 210 168 255;
+      --red: 255 123 114;
+    }
+  }
+
+  html {
+    @apply bg-term-bg font-mono text-term-fg antialiased;
+    overflow-wrap: break-word;
+  }
+
+  ::selection {
+    @apply bg-term-green/30;
+  }
+
+  a {
+    @apply text-term-blue underline decoration-term-blue/40 underline-offset-4 transition-colors;
+  }
+
+  a:hover {
+    @apply bg-term-blue/10 decoration-current;
+  }
+
+  a:focus-visible {
+    @apply rounded-sm outline outline-2 outline-offset-2 outline-term-green;
+  }
+
+  h1 {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
+
+  h2 {
+    @apply text-xl font-bold sm:text-2xl;
+  }
+
+  h3 {
+    @apply text-lg font-bold text-term-cyan;
+  }
+
+  h4 {
+    @apply font-bold;
+  }
 }
 
-h1 {
-  @apply font-bold text-4xl;
+@layer components {
+  .term-window {
+    @apply overflow-hidden rounded-lg border border-term-border bg-term-surface shadow-lg shadow-black/5;
+  }
+
+  .term-titlebar {
+    @apply flex items-center gap-3 border-b border-term-border bg-term-raised px-4 py-2 text-xs text-term-muted;
+  }
+
+  .term-body {
+    @apply flex flex-col gap-4 p-4 sm:p-6;
+  }
+
+  .term-dot {
+    @apply inline-block h-3 w-3 rounded-full;
+  }
+
+  /* A shell prompt line: <p class="prompt">nix run .#next-meetup</p> */
+  .prompt {
+    @apply text-term-fg;
+  }
+
+  .prompt::before {
+    @apply font-bold text-term-green;
+    content: "$ ";
+  }
+
+  .comment {
+    @apply text-term-muted;
+  }
+
+  .cursor {
+    @apply inline-block h-[1.1em] w-[0.6em] translate-y-[0.15em] bg-term-green;
+    animation: cursor-blink 1.1s steps(1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor {
+      animation: none;
+    }
+  }
+
+  /* Markdown-style heading markers for long-form pages. */
+  .md-headings h1::before {
+    @apply text-term-muted;
+    content: "# ";
+  }
+
+  .md-headings h2::before {
+    @apply text-term-muted;
+    content: "## ";
+  }
+
+  .md-headings h3::before {
+    @apply text-term-muted;
+    content: "### ";
+  }
+
+  .md-headings img {
+    @apply rounded-md border border-term-border;
+  }
 }
 
-h2 {
-  @apply font-bold text-3xl;
-}
-
-h3 {
-  @apply font-bold text-2xl text-gray-700;
-}
-
-h4 {
-  @apply font-bold text-xl text-gray-600;
-}
-
-footer a {
-  @apply underline text-slate-400 hover:text-slate-950 visited:text-gray-400;
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
 }

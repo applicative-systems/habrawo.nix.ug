@@ -1,19 +1,38 @@
 ---
+const windows = [
+  ["home", "/"],
+  ["impressum", "/impressum"],
+  ["datenschutz", "/gdpr"],
+];
+
+const current = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
-<footer class="max-w-screen-xl mx-auto text-gray-500 text-sm">
-  <div class="max-w-screen-xl p-4 flex flex-col gap-4 lg:flex-row md:items-center md:justify-between">
-    <span class="sm:text-center">
-      <a href="/" class="hover:underline">Nix UG HaBraWo</a>
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 font-medium sm:mt-0">
-      {[
-        ["gdpr", "Data Protection / Datenschutz"],
-        ["impressum", "Impressum"]
-       ].map(([page, navHandle]) =>
-        <li>
-          <a href={page} class="hover:underline me-4 md:me-6">{navHandle}</a>
-        </li>
-      )}
+
+<footer class="mt-12 border-t border-term-border bg-term-raised text-xs">
+  <div class="mx-auto flex max-w-screen-md flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2">
+    <ul class="flex flex-wrap items-center gap-x-3">
+      <li class="bg-term-green px-1.5 font-bold text-term-bg">[habrawo]</li>
+      {
+        windows.map(([label, href], i) => {
+          const active = current === href;
+          return (
+            <li>
+              <a
+                href={href}
+                aria-current={active ? "page" : undefined}
+                class:list={[
+                  "no-underline hover:bg-transparent hover:text-term-fg",
+                  active ? "font-bold text-term-green" : "text-term-muted",
+                ]}
+              >
+                {i}:{label}
+                {active && "*"}
+              </a>
+            </li>
+          );
+        })
+      }
     </ul>
+    <span class="text-term-muted">built with <code class="text-term-fg">nix build .#website</code></span>
   </div>
 </footer>

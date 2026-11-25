@@ -1,325 +1,147 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+import Terminal from "@components/Terminal.astro";
+import MeetupDetails from "@components/MeetupDetails.astro";
 import { Image } from "astro:assets";
+
+import { nextMeetup, pastMeetups, weekday } from "../data/meetups";
 
 import logoLandscape from "@images/logo-landscape.svg";
 import logoNixcademy from "@images/supporters/nixcademy.svg";
 import logoApplicative from "@images/supporters/applicative.svg";
 import logoNixInstitute from "@images/supporters/nix-institute.svg";
 
-import bsWeihnachtsMarkt from "@images/locations/bs-weihnachtsmarkt/burgplatz.png";
-import bsVirtuaLounge from "@images/locations/bs-virtualounge/nix-ug-virtualounge.png";
-import bsVRevent1_1 from "@images/events/2025-07-virtualounge/arian-talk.jpg";
-import bsVRevent1_2 from "@images/events/2025-07-virtualounge/lassulus-kenji-talk.jpg";
-import bsVRevent1_3 from "@images/events/2025-07-virtualounge/IMG_4794.jpeg";
-import bsVRevent2_alex from "@images/events/2025-10-virtualounge/alex-talk.jpeg";
-import bsVRevent2_chicken from "@images/events/2025-10-virtualounge/chicken-horse.jpeg";
+const supporters = [
+  { name: "Nixcademy", href: "https://nixcademy.com", logo: logoNixcademy, class: "h-8" },
+  { name: "Applicative Systems", href: "https://applicative.systems", logo: logoApplicative, class: "h-10" },
+  { name: "Institute of Nix", href: "https://nix.institute", logo: logoNixInstitute, class: "h-9", wordmark: true },
+];
+
+const pastSummary = (m: (typeof pastMeetups)[number]) =>
+  m.title ?? m.talks?.[0]?.title ?? "Meetup";
 ---
 
 <Layout title="Nix Usergroup Hannover Braunschweig Wolfsburg">
-  <Image src={logoLandscape} alt="Nix Usergroup Hannover Braunschweig Wolfsburg" class="w-full object-contain px-2 pt-10 lg:pt-20 lg:px-12 max-w-screen-2xl mx-auto" />
-  <div class="flex flex-col gap-8 max-w-screen-md mx-auto pb-20 pt-4 px-4 lg:px-0">
-    <h1 class="text-center py-10">Nix(OS) User Group Hannover Braunschweig Wolfsburg</h1>
-    <div>
-      <h2 class="pb-4">Contact</h2>
-      <ul class="list-image-flake list-inside">
-        <li>Whatsapp Group: <a href="https://chat.whatsapp.com/JSWO6lI7Ls5BrRxzpmYKuR">Join Here</a></li>
-        <li>Matrix Chat Room: <a href="https://matrix.to/#/#habrawo:nixos.org">#habrawo:nixos.org</a></li>
-        <li>Group organizer: Email jacek@applicative.systems, Matrix <a href="https://matrix.to/#/@tfc:matrix.org">@tfc:matrix.org</a></li>
-      </ul>
-    </div>
-    <div class="flex flex-col gap-4">
-      <div class="flex flex-col gap-4 border-2 border-red-500 p-8 border-dashed rounded-lg">
-        <h2>Next Meetup: Wolfsburg</h2>
-
-        <p>Date: 2026-07-16 Thursday</p>
-        <p>Location: <a href="/locations/schiller40-wolfsburg">Wolfsburg, Coworking Space Schiller 40</a></p>
-        <p>Time: 18:00 - open end</p>
-        <ul class="list-image-flake list-inside">
-          <li>18:00: Get together</li>
-          <li>18:20: Tech Talk</li>
-          <li>19:20: Discussion</li>
-          <li>20:00: Restaurant or Bar (until open end)</li>
-        </ul>
-        <h3>Tech Talk: TBD</h3>
-        <p>
-        <a href="https://github.com/applicative-systems/declarative-runtime">applicative-systems/declarative-runtime</a>:
-        NixOS manages services declaratively — but the declarative surface is largely determined by the service itself. More often than not, there’s a gap between what you can declare (package, config file, systemd unit) and the service’s runtime state: Grafana dashboards, a Git forge’s organizations and repositories. Conveniently, many such services already ship a Terraform provider that manages exactly this state. declarative-runtime bridges the gap by pairing NixOS modules with these providers: you declare runtime state right in your Nix config, and it’s reconciled against the live service — making runtime configuration a first-class, declarative citizen of the NixOS world.
+  <div class="mx-auto flex max-w-screen-md flex-col gap-12 px-4 pt-10">
+    <!-- hero -->
+    <section class="flex flex-col gap-6">
+      <Image src={logoLandscape} alt="Nix Usergroup Hannover Braunschweig Wolfsburg" class="mx-auto w-full max-w-xl" />
+      <div class="flex flex-col gap-2">
+        <p class="prompt text-sm">whoami</p>
+        <h1>
+          Nix(OS) User Group<br />
+          <span class="text-term-blue">Hannover</span> <span class="text-term-muted">·</span>
+          <span class="text-term-blue">Braunschweig</span> <span class="text-term-muted">·</span>
+          <span class="text-term-blue">Wolfsburg</span>
+        </h1>
+        <p class="comment">
+          # Talks, hacking, games and food for everyone into reproducible systems and Linux.
         </p>
-
       </div>
+    </section>
 
-        <h2>Past Meetup: Nix Christmas Party!</h2>
+    <!-- next meetup -->
+    <Terminal id="next" title="~/habrawo: nix run .#next-meetup" class="scroll-mt-20 ring-1 ring-term-green/40">
+      <p class="prompt">nix run .#next-meetup</p>
 
-        <Image src={bsVirtuaLounge} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
+      <h2 class="text-term-yellow">{nextMeetup.title}</h2>
 
-        <p>Date: 2026-12-16 Wednesday</p>
-        <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
-        <p>Time: 17:00 - open end</p>
-        <ul class="list-image-flake list-inside">
-          <li>17:00 - 20:00: VR gaming and <a href="https://store.steampowered.com/app/386940/Ultimate_Chicken_Horse/">Ultimate Chicken Horse</a> tournament</li>
-          <li>20:00: Christmas Market (until open end)</li>
-        </ul>
-        <h3>Tech Talk: TBD</h3>
+      {
+        nextMeetup.rsvp && (
+          <p>
+            <span class="font-bold text-term-yellow">warning:</span> please{" "}
+            <a href="#contact">drop us a message</a> if you're coming so we can organize enough food!
+          </p>
+        )
+      }
 
-        <h3>Pictures of earlier events at this location:</h3>
-        <Image src={bsVRevent1_1} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
-        <Image src={bsVRevent1_2} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
-        <Image src={bsVRevent1_3} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
+      {
+        nextMeetup.flyer && (
+          <Image
+            src={nextMeetup.flyer.src}
+            alt={nextMeetup.flyer.alt}
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 768px) 720px, 100vw"
+            class="w-full rounded-md border border-term-border"
+          />
+        )
+      }
 
-      <div class="pt-4 pb-8">
-        <h2 class="pb-6">Supported by</h2>
-        <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-          <a href="https://nixcademy.com" title="Nixcademy" class="no-underline">
-            <Image src={logoNixcademy} alt="Nixcademy" class="h-10 w-auto" />
-          </a>
-          <a href="https://applicative.systems" title="Applicative Systems" class="no-underline">
-            <Image src={logoApplicative} alt="Applicative Systems" class="h-12 w-auto" />
-          </a>
-          <a href="https://nix.institute" title="Institute of Nix" class="flex items-center gap-2 no-underline text-gray-900 visited:text-gray-900 hover:text-gray-600">
-            <Image src={logoNixInstitute} alt="" class="h-10 w-auto" />
-            <span class="text-xl"><span class="font-bold">Institute</span> <span class="font-light">of</span> <span class="font-bold text-[#5277c3]">Nix</span></span>
-          </a>
-        </div>
-      </div>
+      <MeetupDetails meetup={nextMeetup} />
 
-      <h2>Past Meetup: Nix Christmas Party 2025</h2>
+      <p class="prompt"><span class="cursor" aria-hidden="true"></span></p>
+    </Terminal>
 
-      <p>Date: 2025-12-09 Tuesday</p>
-      <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
-      <p>Time: 16:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>16:00: 2 hours of VR gaming</li>
-        <li>18:00: <a href="https://store.steampowered.com/app/386940/Ultimate_Chicken_Horse/">Ultimate Chicken Horse</a> tournament</li>
-        <li>20:00: Christmas Market (until open end)</li>
+    <!-- supporters -->
+    <section class="flex flex-col gap-3">
+      <h2>Supported by</h2>
+      <p class="text-term-muted">These companies help make our meetups happen. Thank you!</p>
+      <ul class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {
+          supporters.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                title={s.name}
+                class="flex h-20 items-center justify-center gap-2 rounded-md border border-term-border bg-white px-4 no-underline transition-transform hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+              >
+                <Image src={s.logo} alt={s.wordmark ? "" : s.name} class:list={["w-auto", s.class]} />
+                {s.wordmark && (
+                  <span class="whitespace-nowrap text-base text-neutral-900">
+                    <span class="font-bold">Institute</span> <span class="font-light">of</span>{" "}
+                    <span class="font-bold text-[#5277c3]">Nix</span>
+                  </span>
+                )}
+              </a>
+            </li>
+          ))
+        }
       </ul>
+    </section>
 
-      <h2>Past meetup</h2>
+    <!-- contact -->
+    <Terminal id="contact" title="~/habrawo: cat contact.toml" class="scroll-mt-20">
+      <p class="prompt">cat contact.toml</p>
+      <pre class="overflow-x-auto leading-relaxed"><span class="text-term-magenta">[chat]</span>
+<span class="text-term-cyan">whatsapp</span> <span class="text-term-muted">=</span> <span class="text-term-green">"<a href="https://chat.whatsapp.com/JSWO6lI7Ls5BrRxzpmYKuR" class="text-term-green">join here</a>"</span>
+<span class="text-term-cyan">matrix</span>   <span class="text-term-muted">=</span> <span class="text-term-green">"<a href="https://matrix.to/#/#habrawo:nixos.org" class="text-term-green">#habrawo:nixos.org</a>"</span>
 
-      <p>Date: 2025-10-26 Sunday</p>
-      <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
-      <p>Time: 16:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>16:00: 2 hours of VR gaming</li>
-        <li>18:00: Super Smash Brothers and Dance Dance Revolution tournament</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
+<span class="text-term-magenta">[organizer]</span>
+<span class="text-term-cyan">email</span>  <span class="text-term-muted">=</span> <span class="text-term-green">"jacek@applicative.systems"</span>
+<span class="text-term-cyan">matrix</span> <span class="text-term-muted">=</span> <span class="text-term-green">"<a href="https://matrix.to/#/@tfc:matrix.org" class="text-term-green">@tfc:matrix.org</a>"</span></pre>
+    </Terminal>
+
+    <!-- past meetups -->
+    <section id="past" class="flex scroll-mt-20 flex-col gap-4">
+      <p class="prompt">git log --oneline past-meetups</p>
+      <ul class="flex flex-col divide-y divide-term-border overflow-hidden rounded-lg border border-term-border bg-term-surface">
+        {
+          pastMeetups.map((m) => (
+            <li>
+              <details class="group">
+                <summary class="flex cursor-pointer list-none gap-3 px-4 py-3 hover:bg-term-raised [&::-webkit-details-marker]:hidden">
+                  <span class="shrink-0 text-term-muted transition-transform group-open:rotate-90">›</span>
+                  <span class="shrink-0 text-term-yellow">{m.date}</span>
+                  <span class="hidden shrink-0 text-term-muted sm:inline">{weekday(m.date)}</span>
+                  <span class="min-w-0 [&_a]:pointer-events-none [&_a]:text-current [&_a]:no-underline" set:html={pastSummary(m)} />
+                </summary>
+                <div class="flex flex-col gap-4 border-t border-dashed border-term-border px-4 py-4 sm:px-6">
+                  {m.flyer && (
+                    <Image
+                      src={m.flyer.src}
+                      alt={m.flyer.alt}
+                      widths={[400, 800]}
+                      sizes="(min-width: 768px) 680px, 100vw"
+                      class="w-full rounded-md border border-term-border"
+                    />
+                  )}
+                  <MeetupDetails meetup={m} />
+                </div>
+              </details>
+            </li>
+          ))
+        }
       </ul>
-      <h3>Tech Talk: cake: flake-parts inspired configuration framework for classic Nix projects</h3>
-      <Image src={bsVRevent2_alex} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
-      <Image src={bsVRevent2_chicken} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
-
-      <h2>Past Meetup</h2>
-
-
-
-
-      <p>Date: 2025-08-26 Tuesday</p>
-      <p>Location: <a href="/locations/hafven-hannover">Hannover, Hafven</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: systemd-repart and systemd-sysupdate in NixOS</h3>
-      <p>
-        In this session, we will see how to build a minimal NixOS image using systemd-repart and systemd-sysupdate, which are nicely integrated in nixOS.
-        We will also have a look into how to minimize NixOS images and debug excess closure size!
-      </p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-
-      <h3>Special Event: Let's Play Coop VR Games and Console Games Together!</h3>
-      <p>There will be talks from special guests from Berlin (@lassulus &amp; @arianvp), console and fun coop VR games and food - Sponsored by <a href="https://nixcademy.com">Nixcademy</a>!</p>
-      <p><u>Please drop us a message if you're coming so we can organize enough food!</u></p>
-
-      <Image src={bsVirtuaLounge} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
-
-      <p>Date: 2025-07-12 Saturday</p>
-      <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
-      <p>Time: 17:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>17:00: Get together</li>
-        <li>18:00: Tech Talks</li>
-        <li>19:00: Games, Games, Games</li>
-        <li>22:00: Bar/Pub (until open end)</li>
-      </ul>
-      <h3>Tech Talks</h3>
-      <p>We have some special guests from Berlin:</p>
-      <h4>Talk 1: <a href="http://clan.lol/">Clan</a> Demo (<a href="https://github.com/lassulus">@lassulus</a>)</h4>
-      <h4>Talk 2: Deploying NixOS on AWS</a> (<a href="https://github.com/arianvp">@arianvp</a>)</h4>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-
-      <p>Date: 2025-05-26 Monday</p>
-      <p>Location: <a href="/locations/schiller40-wolfsburg">Wolfsburg, Coworking Space Schiller 40</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: TBD</h3>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-
-      <p>Date: 2025-04-25 Friday</p>
-      <p>Location: <a href="/locations/hafven-hannover">Hannover, Hafven</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: nixos-diff: view differences in NixOS configurations</h3>
-      <p>
-        Viewing differences between NixOS configurations has been possible by
-        viewing differences of the resulting derivations, as well as interactive
-        exploration using nixos-option.
-        With nixos-diff it is possible to view all relevant configuration
-        differences.
-        In this session we will introduce and explore this early prototype.
-      </p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-
-      <p>Date: 2025-03-27 Thursday</p>
-      <p>Location: <a href="/locations/theos-coworking-space-braunschweig">Braunschweig, Theos Coworking Space</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion about <a href="https://planetnix.com/">Planet Nix</a>, dynamic derivations, and more!</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: Automatic Deployment with Sanity-Checked Configurations</h3>
-      <p>
-        <a href="https://github.com/applicative-systems/nxbd">nxbd</a> is a lightweight,
-        safety-focused NixOS deployment tool that helps you manage multiple NixOS
-        systems with confidence.
-        Unlike other deployment tools, nxbd focuses on validating your configurations
-        before deployment to prevent common pitfalls and system lockouts.
-      </p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-
-      <p>Date: 2025-02-27 Tuesday</p>
-      <p>Location: <a href="/locations/schiller40-wolfsburg">Wolfsburg, Coworking Space Schiller 40</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: <i>TBD</i></h3>
-      <p><i>content TBD</i></p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-      <p>Date: 2025-01-13 Monday</p>
-      <p>Location: <a href="/locations/hafven-hannover">Hannover, Hafven</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: How to set up a Grafana Dashboard for your server infrastructure</h3>
-
-      <p>
-        It's important to see all your server's health and performance at one glance. For that reason, let's see how to set up a Grafana dashboard with automatically collected data via an encrypted Wireguard network - complete with encrypted secret management!
-      </p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-      <p>Date: Tuesday, 2024-09-17</p>
-      <p>Location: <a href="/locations/theos-coworking-space-braunschweig">Braunschweig, Theos Coworking Space</a></p>
-      <p>Time: 18:00 - open end</p>
-
-      <h3>Schedule</h3>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-      <p>Date: 2024-12-10 Tuesday</p>
-      <p>Location: Burgplatz, Braunschweig. On the christmas market! We meet right at the lion statue.</p>
-      <Image src={bsWeihnachtsMarkt} alt="The Burgplatz in Braunschweig. We meet at the Lion statue." />
-
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>21:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Let's Celebrate Christmas and the end of the year together</h3>
-      <p>There will be a little Nix-related present for everyone!</p>
-
-      <hr>
-      <h2>Past Meetup</h2>
-      <p>Date: 2024-11-19 Tuesday</p>
-      <p>Location: <a href="/locations/schiller40-wolfsburg">Wolfsburg, Coworking Space Schiller 40</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: <i>TBD</i></h3>
-      <p><i>content TBD</i></p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-      <p>Date: 2024-10-29 Tuesday</p>
-      <p>Location: <a href="/locations/hafven-hannover">Hannover, Hafven</a></p>
-      <p>Time: 18:00 - open end</p>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Tech Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-      <h3>Tech Talk: asecret - automatically provision secrets through configuration</h3>
-
-      <p>Service configuration through Nix is a blast!: it is both easily discoverable and does not require expert knowledge. That fun is spoiled whenever we encounter secrets, since their generation usually is not as easily discoverable and does require expert knowledge. Can we maintain the fun when encountering secrets?</p>
-
-      <hr>
-
-      <h2>Past Meetup</h2>
-      <p>Date: Tuesday, 2024-09-17</p>
-      <p>Location: <a href="/locations/theos-coworking-space-braunschweig">Braunschweig, Theos Coworking Space</a></p>
-      <p>Time: 18:00 - open end</p>
-
-      <h3>Schedule</h3>
-      <ul class="list-image-flake list-inside">
-        <li>18:00: Get together</li>
-        <li>18:20: Talk</li>
-        <li>19:20: Discussion</li>
-        <li>20:00: Restaurant or Bar (until open end)</li>
-      </ul>
-    </div>
+    </section>
   </div>
 </Layout>

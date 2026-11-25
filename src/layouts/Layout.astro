@@ -1,32 +1,63 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Nix Usergroup Hannover Braunschweig Wolfsburg",
+} = Astro.props;
 
-import Footer from '../components/Footer.astro';
-import NavigationBar from '../components/NavigationBar.astro';
+import Footer from "../components/Footer.astro";
 
-import '../style/main.css'
+import "../style/main.css";
+
+const nav = [
+  ["next", "/#next"],
+  ["past", "/#past"],
+  ["contact", "/#contact"],
+];
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Nix Usergroup Hannover Braunschweig Wolfsburg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg" />
-    {["048", "096", "144", "180", "192", "240"].map((res) =>
-      <link rel="icon" type="image/png" href={"/icon/icon-" + res + ".png"} sizes={res + "x" + res}>
-    )}
+    {
+      ["048", "096", "144", "180", "192", "240"].map((res) => (
+        <link rel="icon" type="image/png" href={"/icon/icon-" + res + ".png"} sizes={res + "x" + res} />
+      ))
+    }
 
     <title>{title}</title>
   </head>
-  <body>
-    <main class="">
+  <body class="flex min-h-screen flex-col">
+    <header class="sticky top-0 z-10 border-b border-term-border bg-term-bg/85 backdrop-blur">
+      <nav class="mx-auto flex max-w-screen-md items-center justify-between gap-4 px-4 py-3 text-sm">
+        <a href="/" class="font-bold text-term-fg no-underline hover:bg-transparent hover:text-term-green">
+          <span class="text-term-blue">❄</span> habrawo.nix.ug
+        </a>
+        <ul class="flex gap-4">
+          {
+            nav.map(([label, href]) => (
+              <li>
+                <a href={href} class="text-term-muted no-underline hover:bg-transparent hover:text-term-fg">
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </header>
+    <main class="flex-1">
       <slot />
     </main>
     <Footer />

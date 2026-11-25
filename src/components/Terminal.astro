@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+  class?: string;
+}
+
+const { title, id, class: className } = Astro.props;
+---
+
+<section id={id} class:list={["term-window", className]}>
+  <div class="term-titlebar">
+    <span class="flex shrink-0 gap-1.5" aria-hidden="true">
+      <span class="term-dot bg-term-red/80"></span>
+      <span class="term-dot bg-term-yellow/80"></span>
+      <span class="term-dot bg-term-green/80"></span>
+    </span>
+    <span class="truncate">{title}</span>
+  </div>
+  <div class="term-body">
+    <slot />
+  </div>
+</section>
