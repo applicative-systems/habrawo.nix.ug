@@ -1,4 +1,8 @@
-{ buildNpmPackage, nodejs, lib }:
+{
+  buildNpmPackage,
+  nodejs,
+  lib,
+}:
 
 buildNpmPackage {
   name = "habrawo.nix.ug-website";

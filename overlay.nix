@@ -1,3 +1,3 @@
-final: prev: {
+_: prev: {
   habrawo-root = prev.callPackage ./website.nix { };
 }
