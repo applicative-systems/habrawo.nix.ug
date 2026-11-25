@@ -3,6 +3,9 @@ import Layout from '@layouts/Layout.astro';
 import { Image } from "astro:assets";
 
 import logoLandscape from "@images/logo-landscape.svg";
+import logoNixcademy from "@images/supporters/nixcademy.svg";
+import logoApplicative from "@images/supporters/applicative.svg";
+import logoNixInstitute from "@images/supporters/nix-institute.svg";
 
 import bsWeihnachtsMarkt from "@images/locations/bs-weihnachtsmarkt/burgplatz.png";
 import bsVirtuaLounge from "@images/locations/bs-virtualounge/nix-ug-virtualounge.png";
@@ -50,20 +53,46 @@ import bsVRevent2_chicken from "@images/events/2025-10-virtualounge/chicken-hors
 
         <Image src={bsVirtuaLounge} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
 
-        <p>Date: 2025-12-09 Tuesday</p>
+        <p>Date: 2026-12-16 Wednesday</p>
         <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
-        <p>Time: 18:00 - open end</p>
+        <p>Time: 17:00 - open end</p>
         <ul class="list-image-flake list-inside">
-          <li>16:00: 2 hours of VR gaming</li>
-          <li>18:00: <a href="https://store.steampowered.com/app/386940/Ultimate_Chicken_Horse/">Ultimate Chicken Horse</a> tournament</li>
+          <li>17:00 - 20:00: VR gaming and <a href="https://store.steampowered.com/app/386940/Ultimate_Chicken_Horse/">Ultimate Chicken Horse</a> tournament</li>
           <li>20:00: Christmas Market (until open end)</li>
         </ul>
         <h3>Tech Talk: TBD</h3>
 
-        <h3>Pictures of an earlier event at this location:</h3>
+        <h3>Pictures of earlier events at this location:</h3>
         <Image src={bsVRevent1_1} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
         <Image src={bsVRevent1_2} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
         <Image src={bsVRevent1_3} alt="Nix UG HaBraWo Special Event at VirtuaLounge in Braunschweig" />
+
+      <div class="pt-4 pb-8">
+        <h2 class="pb-6">Supported by</h2>
+        <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+          <a href="https://nixcademy.com" title="Nixcademy" class="no-underline">
+            <Image src={logoNixcademy} alt="Nixcademy" class="h-10 w-auto" />
+          </a>
+          <a href="https://applicative.systems" title="Applicative Systems" class="no-underline">
+            <Image src={logoApplicative} alt="Applicative Systems" class="h-12 w-auto" />
+          </a>
+          <a href="https://nix.institute" title="Institute of Nix" class="flex items-center gap-2 no-underline text-gray-900 visited:text-gray-900 hover:text-gray-600">
+            <Image src={logoNixInstitute} alt="" class="h-10 w-auto" />
+            <span class="text-xl"><span class="font-bold">Institute</span> <span class="font-light">of</span> <span class="font-bold text-[#5277c3]">Nix</span></span>
+          </a>
+        </div>
+      </div>
+
+      <h2>Past Meetup: Nix Christmas Party 2025</h2>
+
+      <p>Date: 2025-12-09 Tuesday</p>
+      <p>Location: <a href="/locations/virtualounge-braunschweig">VirtuaLounge Braunschweig</a></p>
+      <p>Time: 16:00 - open end</p>
+      <ul class="list-image-flake list-inside">
+        <li>16:00: 2 hours of VR gaming</li>
+        <li>18:00: <a href="https://store.steampowered.com/app/386940/Ultimate_Chicken_Horse/">Ultimate Chicken Horse</a> tournament</li>
+        <li>20:00: Christmas Market (until open end)</li>
+      </ul>
 
       <h2>Past meetup</h2>
 
